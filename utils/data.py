@@ -3,7 +3,7 @@ from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 
 def load_compra():
-    df_fotocasa = pd.read_csv("ficheros/precio-de-compra-en-fotocasa2.csv", delimiter=";")
+    df_fotocasa = pd.read_csv("ficheros/precio-de-compra-en-fotocasa.csv", delimiter=";")
     df_fotocasa = df_fotocasa.dropna(subset=["Precio_2022 (Euros/m2)"])
     barrios_fotocasa = list(df_fotocasa.sort_values(by="BARRIO").BARRIO)
     df_idealista = pd.read_csv("ficheros/precio-de-compra-en-idealista.csv", delimiter=";")
