@@ -3,7 +3,7 @@ from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 
 def load_compra():
-    df_fotocasa = pd.read_csv("ficheros/precio-de-compra-en-fotocasa.csv", delimiter=";")
+    df_fotocasa = pd.read_csv("ficheros/precio-de-compra-en-fotocasa2.csv", delimiter=";")
     df_fotocasa = df_fotocasa.dropna(subset=["Precio_2022 (Euros/m2)"])
     barrios_fotocasa = list(df_fotocasa.sort_values(by="BARRIO").BARRIO)
     df_idealista = pd.read_csv("ficheros/precio-de-compra-en-idealista.csv", delimiter=";")
@@ -50,9 +50,12 @@ def load_compra():
 
 def añadir_coordenadas(df):
     df_merged = load_compra()
-    df = df.sort_values(by="Barrio")
-    df["GeoPoint"] = df_merged.GeoPoint
-    df["GeoShape"] = df_merged.GeoShape
+    df_merged = df_merged.sort_values(by="Barrio").reset_index(drop=True)
+    df = df.sort_values(by="Barrio").reset_index(drop=True)
+    df["GeoPoint"] = df_merged[["GeoPoint"]]
+    df["GeoShape"] = df_merged[["GeoShape"]]
+    print(list(df["GeoPoint"]) != list(df_merged[["GeoPoint"]]))
+    print(list(df["GeoShape"]) != list(df_merged[["GeoShape"]]))
     return df
 
 

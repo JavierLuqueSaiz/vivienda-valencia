@@ -52,7 +52,9 @@ def select_page(row, pagina, option):
             .replace("la-fonteta-slluis", "fonteta-de-sant-lluis")
         distrito = row['Distrito'].lower() \
             .replace("\'","-") \
-            .replace(" ", "-")
+            .replace(" ", "-") \
+            .replace("la-saïdia", "la-saidia") \
+            .replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o").replace("ú", "u")
         url = f"https://www.idealista.com/{tipo}-viviendas/valencia/{distrito}/{barrio}/"
     else:
         if option == "Buy":
@@ -70,10 +72,13 @@ def select_page(row, pagina, option):
         barrio = row['Barrio'].lower() \
             .replace("\'","") \
             .replace(" ", "-") \
-            .replace("llorens", "llorenc")
+            .replace("sant-llorens", "sant-llorenc-zona-alfahuir") \
+            .replace("cabanyal-canyamelar", "el-cabanyal-el-canyamelar")
         distrito = row['Distrito'].lower() \
             .replace("\'","") \
-            .replace(" ", "-")
+            .replace(" ", "-")  \
+            .replace("la-saïdia", "la-saidia") \
+            .replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o").replace("ú", "u")
         url = f"https://www.fotocasa.es/es/{tipo}/viviendas/valencia-capital/{barrio}/l"
 
     return color, precio, opacity, url, pagina
